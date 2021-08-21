@@ -16,6 +16,16 @@ Its been a long time since i have developed using a windows machine.  Some delay
 
 ## Data Collection
 
+### Data Chain
+
+https://experience.arcgis.com/experience/ae30cf23f70b40fda5a4804e7601eee9 (Williamson County and Cities Health District, Texas Department of State Health Services)
+
+https://www.leanderisd.org/covid19dashboard/ (Williamson County and Cities Health District, Austin Public Health / Travis County)
+
+https://docs.google.com/spreadsheets/d/1zyEfyCwd061b92EK_Pzk7cGw0y04u5s4Bk1XjXKMlJM/edit#gid=0 (Raw positive case data)
+
+This is a google sheet which has an ip available.  https://developers.google.com/sheets/api/quickstart/python
+
 ### Collect using wget
 
 ```powershell
