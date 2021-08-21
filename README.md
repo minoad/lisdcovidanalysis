@@ -24,7 +24,7 @@ https://www.leanderisd.org/covid19dashboard/ (Williamson County and Cities Healt
 
 https://docs.google.com/spreadsheets/d/1zyEfyCwd061b92EK_Pzk7cGw0y04u5s4Bk1XjXKMlJM/edit#gid=0 (Raw positive case data)
 
-This is a google sheet which has an ip available.  https://developers.google.com/sheets/api/quickstart/python
+This s is a google sheet which has an ip available.  https://developers.google.com/sheets/api/quickstart/python
 
 ### Collect using wget
 
