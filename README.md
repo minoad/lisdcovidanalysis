@@ -41,3 +41,10 @@ This s is a google sheet which has an ip available.  https://developers.google.c
 Invoke-WebRequest https://view-awesome-table.com/-MgIH6QvYgeB84hfaQyF/view -OutFile wgetResult.txt
 ```
 
+## School
+
+[School Site](https://whitestone.leanderisd.org/)
+
+### Class Details
+
+[Maul](https://sites.google.com/leanderisd.org/ms-mauls-class/home)
