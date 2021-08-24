@@ -4,11 +4,13 @@ Analysis of covid data related to Leander ISD
 
 Its been a long time since i have developed using a windows machine.  Some delays as i have to look up trivial things like wget on windows.
 
+## Communications
+
+[Principle Newsletter](https://www.smore.com/2jake)
+
 ## Questions to answer
 
-1. Based on historical data, what is the likelyhood of my child becoming infected with COVID on a week by week basis?
-1. Is there a restfull api to collect the data or do we need to webscrape?
-1. Maybe bigquery already includes this data in a dataset somewhere?
+1. Based on historical data, what is the likelihood of my child becoming infected with COVID on a week by week basis?
 
 ## Data Summary
 
@@ -17,6 +19,7 @@ The predictive table will contain the following schema.
 ```
 "date","studentIdent", "teacher", "grade", "covidStatus", "optout", "tracingContact"
 ```
+
 The data is generated from a data file which contains the sum of the number of positive cases per class per day.
 
 ## Data Tool Requirements
@@ -27,13 +30,10 @@ The data is generated from a data file which contains the sum of the number of p
 
 ### Data Chain
 
-https://experience.arcgis.com/experience/ae30cf23f70b40fda5a4804e7601eee9 (Williamson County and Cities Health District, Texas Department of State Health Services)
-
-https://www.leanderisd.org/covid19dashboard/ (Williamson County and Cities Health District, Austin Public Health / Travis County)
-
-https://docs.google.com/spreadsheets/d/1zyEfyCwd061b92EK_Pzk7cGw0y04u5s4Bk1XjXKMlJM/edit#gid=0 (Raw positive case data)
-
-This s is a google sheet which has an ip available.  https://developers.google.com/sheets/api/quickstart/python
+[Williamson County and Cities Health District, Texas Department of State Health Services](https://experience.arcgis.com/experience/ae30cf23f70b40fda5a4804e7601eee9)
+[Williamson County and Cities Health District, Austin Public Health / Travis County](https://www.leanderisd.org/covid19dashboard/)
+[Raw positive case data](https://docs.google.com/spreadsheets/d/1zyEfyCwd061b92EK_Pzk7cGw0y04u5s4Bk1XjXKMlJM/edit#gid=0)
+[This s is a google sheet which has an ip available](https://developers.google.com/sheets/api/quickstart/python)
 
 ### Collect using wget
 
