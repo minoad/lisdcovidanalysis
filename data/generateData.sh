@@ -9,12 +9,15 @@ getClassDetail(){
 ## 2021-08-18,smith,20,kindergarten,2
 ## 2021-08-17,naresh,20,kindergarten,0
 getCaseCountPerDayPerClass(){
-    dte=$1
-    teacher=$2
-    grade=$3
-    result=$(cat classDetail.csv | grep $dte | grep $teacher | grep $grade | cut -d ',' -f 5)
+    local dte=$1
+    local teacher=$2
+    local grade=$3
+    
+    #cat classDetail.csv | grep $dte | grep $teacher | grep $grade 
+    local result=$(cat classDetail.csv | grep $dte | grep $teacher | grep $grade | cut -d ',' -f 6)
+    #echo $result
     if ! [[ $result -ge 0 ]]; then
-        result = -1
+        local result = -1
     fi
     echo $result
     # TODO: Add test.  if not valid number return -1
@@ -23,13 +26,16 @@ getCaseCountPerDayPerClass(){
 # Results in one row per student containing the date, studentid, teachername, grade
 generateStudentData(){
     for classDetail in $(getClassDetail); do
+        
         local dte=$(echo $classDetail | cut -d ',' -f 1)
         local teacherName=$(echo $classDetail | cut -d ',' -f 2)
         local classCount=$(echo $classDetail | cut -d ',' -f 3)
         local grade=$(echo $classDetail | cut -d ',' -f 4)
+        local school=$(echo $classDetail | cut -d ',' -f 5)
+        
         for n in {1..$classCount}; do
             # "date","studentIdent", "teacher", "grade", "covidStatus", "optout", "tracingContact"
-            echo $dte,$(echo $(echo $teacherName | cut -c 1-3) '-stu-' $n | tr -d ' '),$teacherName,$grade #,false,false,false
+            echo $dte,$(echo $(echo $teacherName | cut -c 1-3) '-stu-' $n | tr -d ' '),$teacherName,$grade,$school #,false,false,false
         done
     done
 }
@@ -45,6 +51,9 @@ assignCovidStatus()(
         if [[ $teacher != $(echo $studentEntry | cut -d ',' -f 3) ]]; then
             #echo $teacher $(echo $studentEntry | cut -d ',' -f 3)
             ## TODO: if -1, an error has occured
+            #echo $studentEntry
+            ## TODO: Add school parameter in case of same name teacher in same grade.
+            #echo $(echo $studentEntry | cut -d ',' -f 1) $(echo $studentEntry | cut -d ',' -f 3) $(echo $studentEntry | cut -d ',' -f 4)
             local caseCount=$(getCaseCountPerDayPerClass $(echo $studentEntry | cut -d ',' -f 1) $(echo $studentEntry | cut -d ',' -f 3) $(echo $studentEntry | cut -d ',' -f 4))
             #echo $caseCount
         fi
