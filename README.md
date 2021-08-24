@@ -10,6 +10,15 @@ Its been a long time since i have developed using a windows machine.  Some delay
 1. Is there a restfull api to collect the data or do we need to webscrape?
 1. Maybe bigquery already includes this data in a dataset somewhere?
 
+## Data Summary
+
+The predictive table will contain the following schema.
+
+```
+"date","studentIdent", "teacher", "grade", "covidStatus", "optout", "tracingContact"
+```
+The data is generated from a data file which contains the sum of the number of positive cases per class per day.
+
 ## Data Tool Requirements
 
 1. Compare risk to the predicted date of vaccine release for 5+ and create a value proposition including risk vs the value of attending school.
