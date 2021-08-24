@@ -13,6 +13,10 @@ getCaseCountPerDayPerClass(){
     teacher=$2
     grade=$3
     result=$(cat classDetail.csv | grep $dte | grep $teacher | grep $grade | cut -d ',' -f 5)
+    if ! [[ $result -ge 0 ]]; then
+        result = -1
+    fi
+    echo $result
     # TODO: Add test.  if not valid number return -1
 }
 
@@ -34,15 +38,29 @@ generateStudentData(){
 # This will need to distribute the positive cases to n members of the class.  Right now i do not need to worry about summing the total cases per class on a date since the case count is cumulative.
 # If this changes and the case count becomes an absolute measurement on any individual day, i will then need to look back through the data file and sum the total number of cases before distributing.
 # this bit is annoying.  I hate coding in bash.  If this gets any more complex, rewrite it in Go or python.
-#assignCovidStatus
+assignCovidStatus()(
+    for studentEntry in $(generateStudentData); do
+        # If the last teacher and the current teacher are different, get the cumulative case count
+        # TODO: Add date and grade ands to the logic
+        if [[ $teacher != $(echo $studentEntry | cut -d ',' -f 3) ]]; then
+            #echo $teacher $(echo $studentEntry | cut -d ',' -f 3)
+            ## TODO: if -1, an error has occured
+            local caseCount=$(getCaseCountPerDayPerClass $(echo $studentEntry | cut -d ',' -f 1) $(echo $studentEntry | cut -d ',' -f 3) $(echo $studentEntry | cut -d ',' -f 4))
+            #echo $caseCount
+        fi
+        local dte=$(echo $studentEntry | cut -d ',' -f 1)
+        local teacher=$(echo $studentEntry | cut -d ',' -f 3)
+        local grade=$(echo $studentEntry | cut -d ',' -f 4)
+        #echo $caseCount
+        # if case count > 0, we still have positives to distribute
+        if [[ caseCount -gt 0 ]]; then
+            local state=true
+        else;
+            local state=false
+        fi
+        echo $studentEntry,$state
+        local caseCount=$(($caseCount -1))
+    done
+)
 
-for studentEntry in $(generateStudentData); do
-    dte=$(echo $studentEntry | cut -d ',' -f 1)
-    teacher=$(echo $studentEntry | cut -d ',' -f 3)
-    grade=$(echo $studentEntry | cut -d ',' -f 4)
-    # get the number of positive cases for that day
-    ## TODO: if -1, an error has occured
-    # Only perform this lookup if this teacher name is different than the last teacher name
-    caseCount=$(getCaseCountPerDayPerClass $dte $teacher $grade)
-    echo $dte $teacher $grade $caseCount
-done
+assignCovidStatus
