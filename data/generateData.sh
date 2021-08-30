@@ -23,6 +23,7 @@ getCaseCountPerDayPerClass(){
     # TODO: Add test.  if not valid number return -1
 }
 
+
 # Results in one row per student containing the date, studentid, teachername, grade
 generateStudentData(){
     for classDetail in $(getClassDetail); do
