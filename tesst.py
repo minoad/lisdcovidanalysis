@@ -7,3 +7,4 @@ def this_test(x):
 
 if __name__ == '__main__':
     myfunc(this_test(1))
+    # fixed the thing
